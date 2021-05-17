@@ -6,14 +6,14 @@
     {
         public static IMvcCoreBuilder AddFluentResults(this IMvcCoreBuilder builder)
         {
-            ServiceRegistrar.RegisterServices(builder.Services);
+            ControllerServiceRegistrar.RegisterServices(builder.Services);
 
             return builder;
         }
 
         public static IMvcBuilder AddFluentResults(this IMvcBuilder builder)
         {
-            ServiceRegistrar.RegisterServices(builder.Services);
+            ControllerServiceRegistrar.RegisterServices(builder.Services);
 
             return builder;
         }

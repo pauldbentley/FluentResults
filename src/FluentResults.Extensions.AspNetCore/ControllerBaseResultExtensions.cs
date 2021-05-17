@@ -10,12 +10,12 @@
             this ControllerBase controller,
             ResultBase result)
         {
-            var context = new ResultTranslating(result, controller);
+            var context = new ControllerResultContext(controller, result);
 
             var factory = controller
                 .HttpContext
                 .RequestServices
-                .GetRequiredService<ActionResultTranslatorFactory>();
+                .GetRequiredService<ActionResultTranslatorFactory<ControllerResultContext>>();
 
             var translator = factory.GetTranslator(result);
             return translator.ToActionResult(context);

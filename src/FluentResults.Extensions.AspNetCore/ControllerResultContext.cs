@@ -3,15 +3,14 @@
     using FluentResults;
     using Microsoft.AspNetCore.Mvc;
 
-    public class ResultTranslating
+    public class ControllerResultContext
     {
-        public ResultTranslating(
-            ResultBase result,
-            ControllerBase controller)
+        public ControllerResultContext(
+            ControllerBase controller,
+            ResultBase result)
         {
-            Result = result;
             Controller = controller;
-
+            Result = result;
             IsValueResult = result.GetType().IsGenericType;
 
             Value = IsValueResult
@@ -19,9 +18,9 @@
                 : null;
         }
 
-        public ResultBase Result { get; }
-
         public ControllerBase Controller { get; }
+
+        public ResultBase Result { get; }
 
         public object? Value { get; }
 

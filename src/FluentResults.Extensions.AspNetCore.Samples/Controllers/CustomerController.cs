@@ -16,7 +16,14 @@ namespace FluentResults.Extensions.AspNetCore.Samples.Controllers
         [HttpGet("{id}")]
         public ActionResult<CustomerDto> GetCustomer(int id)
         {
-            return this.Result(_service.GetCustomer(id));
+            var result = _service.GetCustomer(id);
+
+            if (result.IsSuccess)
+            {
+                return Ok(result.Value.ToCustomerDto());
+            }
+
+            return this.Result(result);
         }
     }
 

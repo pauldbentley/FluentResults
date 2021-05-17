@@ -2,8 +2,8 @@
 {
     using Microsoft.AspNetCore.Mvc;
 
-    public interface IActionResultTranslator
+    public interface IActionResultTranslator<TContext>
     {
-        ActionResult ToActionResult(ResultTranslating context);
+        ActionResult ToActionResult(TContext context);
     }
 }

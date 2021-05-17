@@ -4,9 +4,9 @@
     using FluentResults;
     using Microsoft.AspNetCore.Mvc;
 
-    public class BadRequestErrorTranslator : IActionResultTranslator<BadRequestError>
+    public class BadRequestErrorTranslator : IActionResultTranslator<BadRequestError, ControllerResultContext>
     {
-        public ActionResult ToActionResult(ResultTranslating context)
+        public ActionResult ToActionResult(ControllerResultContext context)
         {
             var error = context
                 .Result

@@ -1,6 +1,7 @@
 ﻿namespace FluentResults.Extensions.AspNetCore
 {
-    public interface IActionResultTranslator<TReason> : IActionResultTranslator
+    public interface IActionResultTranslator<TReason, TContext>
+        : IActionResultTranslator<TContext>
     {
     }
 }

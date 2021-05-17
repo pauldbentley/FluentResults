@@ -4,9 +4,9 @@
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
 
-    public class CreatedSuccessTranslator : IActionResultTranslator<CreatedSuccess>
+    public class CreatedSuccessTranslator : IActionResultTranslator<CreatedSuccess, ControllerResultContext>
     {
-        public ActionResult ToActionResult(ResultTranslating context)
+        public ActionResult ToActionResult(ControllerResultContext context)
         {
             var success = context
                 .Result
