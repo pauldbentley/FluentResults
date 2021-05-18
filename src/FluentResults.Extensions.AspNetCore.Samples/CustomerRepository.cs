@@ -18,6 +18,7 @@ namespace FluentResults.Extensions.AspNetCore.Samples
             {
                 new() { Id = 1, Name = "John Smith" },
                 new() { Id = 2, Name = "Jane Doe" },
+                new() { Id = 3, Name = "Guybrush Threepwood" },
             };
         }
 

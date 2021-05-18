@@ -45,7 +45,22 @@
             }
 
             var customer = _repository.AddCustomer(createResult.Value);
-            return Result.Ok(customer);
+            return Result
+                .Ok(customer)
+                .WithSuccess<CreatedSuccess>();
+        }
+
+        public Result PromoteToPremiumCustomer(int id)
+        {
+            var customerResult = GetCustomer(id);
+
+            if (customerResult.IsFailed)
+            {
+                return customerResult;
+            }
+
+            var customer = customerResult.Value;
+            return customer.PromoteToPremium();
         }
     }
 }

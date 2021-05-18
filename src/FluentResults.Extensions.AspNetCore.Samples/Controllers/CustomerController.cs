@@ -14,35 +14,24 @@ namespace FluentResults.Extensions.AspNetCore.Samples.Controllers
         }
 
         [HttpGet("{id}")]
-        public ActionResult<CustomerDto> GetCustomer(int id)
+        public ActionResult<Customer> GetCustomer(int id)
         {
             var result = _service.GetCustomer(id);
-
-            if (result.IsSuccess)
-            {
-                return Ok(result.Value.ToCustomerDto());
-            }
-
             return this.Result(result);
         }
-    }
 
-    public class CustomerDto
-    {
-        public int Id { get; init; }
-
-        public string Name { get; init; }
-    }
-
-    public static class CustomerExtensions
-    {
-        public static CustomerDto ToCustomerDto(this Customer customer)
+        [HttpPost]
+        public ActionResult<Customer> CreateCustomer(string name)
         {
-            return new()
-            {
-                Id = customer.Id,
-                Name = customer.Name,
-            };
+            var result = _service.CreateCustomer(name);
+            return this.Result(result);
+        }
+
+        [HttpPost("{id}/promote")]
+        public ActionResult CreateCustomerToPremium(int id)
+        {
+            var result = _service.PromoteToPremiumCustomer(id);
+            return this.Result(result);
         }
     }
 }
