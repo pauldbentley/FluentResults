@@ -1,12 +1,12 @@
-﻿namespace FluentResults.Extensions.AspNetCore
+﻿namespace FluentResults.Extensions.AspNetCore.Handlers
 {
     using System.Linq;
     using FluentResults;
     using Microsoft.AspNetCore.Mvc;
 
-    public class BadRequestErrorTranslator : IActionResultTranslator<BadRequestError, ControllerResultContext>
+    public static class BadRequestErrorHandler
     {
-        public ActionResult ToActionResult(ControllerResultContext context)
+        public static ActionResult Handle(ControllerResultContext context)
         {
             var error = context
                 .Result

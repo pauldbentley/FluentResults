@@ -1,20 +1,23 @@
 ﻿namespace FluentResults.Extensions.AspNetCore
 {
+    using FluentResults.Extensions.AspNetCore.Handlers;
     using Microsoft.Extensions.DependencyInjection;
 
     public static class ControllerServiceRegistrar
     {
         public static IServiceCollection RegisterServices(IServiceCollection services)
         {
-            services.AddScoped<ActionResultTranslatorFactory<ControllerResultContext>>();
-            services.AddScoped<IActionResultTranslator<Success, ControllerResultContext>, SuccessTranslator>();
-            services.AddScoped<IActionResultTranslator<Error, ControllerResultContext>, ErrorTranslator>();
-            services.AddScoped<IActionResultTranslator<NotFoundError, ControllerResultContext>, NotFoundErrorTranslator>();
-            services.AddScoped<IActionResultTranslator<CreatedSuccess, ControllerResultContext>, CreatedSuccessTranslator>();
-            services.AddScoped<IActionResultTranslator<BadRequestError, ControllerResultContext>, BadRequestErrorTranslator>();
-            services.AddScoped<IActionResultTranslator<ProblemError, ControllerResultContext>, ProblemErrorTranslator>();
-            services.AddScoped<IActionResultTranslator<ValidationProblemError, ControllerResultContext>, ValidationProblemErrorTranslator>();
-            services.AddScoped<IActionResultTranslator<ForbidError, ControllerResultContext>, ForbidErrorTranslator>();
+            services.Configure<FluentResultOptions>(options =>
+            {
+                options.ControllerEvents.RegisterHandler<BadRequestError>(BadRequestErrorHandler.Handle);
+                options.ControllerEvents.RegisterHandler<CreatedSuccess>(CreatedSuccessHandler.Handle);
+                options.ControllerEvents.RegisterHandler<Error>(ErrorHandler.Handle);
+                options.ControllerEvents.RegisterHandler<ForbidError>(ForbidErrorHandler.Handle);
+                options.ControllerEvents.RegisterHandler<NotFoundError>(NotFoundErrorHandler.Handle);
+                options.ControllerEvents.RegisterHandler<ProblemError>(ProblemErrorHandler.Handle);
+                options.ControllerEvents.RegisterHandler<Success>(SuccessHandler.Handle);
+                options.ControllerEvents.RegisterHandler<ValidationProblemError>(ValidationProblemErrorHandler.Handle);
+            });
 
             return services;
         }

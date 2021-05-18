@@ -1,12 +1,12 @@
-﻿namespace FluentResults.Extensions.AspNetCore
+﻿namespace FluentResults.Extensions.AspNetCore.Handlers
 {
     using System.Linq;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
 
-    public class CreatedSuccessTranslator : IActionResultTranslator<CreatedSuccess, ControllerResultContext>
+    public static class CreatedSuccessHandler
     {
-        public ActionResult ToActionResult(ControllerResultContext context)
+        public static ActionResult Handle(ControllerResultContext context)
         {
             var success = context
                 .Result

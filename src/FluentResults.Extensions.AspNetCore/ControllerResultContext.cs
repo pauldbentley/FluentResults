@@ -22,7 +22,7 @@
 
         public ResultBase Result { get; }
 
-        public object? Value { get; }
+        public object Value { get; }
 
         public bool IsValueResult { get; }
     }

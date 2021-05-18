@@ -2,7 +2,6 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
-    <Nullable>enable</Nullable>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Version>0.0.1-beta1</Version>
   </PropertyGroup>
@@ -12,7 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="FluentResults.Extensions.MoreReasons" Version="0.0.1-beta1" />
+    <ProjectReference Include="..\FluentResults.Extensions.MoreReasons\FluentResults.Extensions.MoreReasons.csproj" />
   </ItemGroup>
 
 </Project>

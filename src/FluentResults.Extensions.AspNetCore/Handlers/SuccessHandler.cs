@@ -1,11 +1,10 @@
-﻿namespace FluentResults.Extensions.AspNetCore
+﻿namespace FluentResults.Extensions.AspNetCore.Handlers
 {
-    using FluentResults;
     using Microsoft.AspNetCore.Mvc;
 
-    public class SuccessTranslator : IActionResultTranslator<Success, ControllerResultContext>
+    public static class SuccessHandler
     {
-        public ActionResult ToActionResult(ControllerResultContext context)
+        public static ActionResult Handle(ControllerResultContext context)
         {
             if (context.IsValueResult)
             {

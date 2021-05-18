@@ -1,12 +1,11 @@
-﻿namespace FluentResults.Extensions.AspNetCore
+﻿namespace FluentResults.Extensions.AspNetCore.Handlers
 {
     using System.Linq;
-    using FluentResults;
     using Microsoft.AspNetCore.Mvc;
 
-    public class ErrorTranslator : IActionResultTranslator<Error, ControllerResultContext>
+    public static class ErrorHandler
     {
-        public ActionResult ToActionResult(ControllerResultContext context)
+        public static ActionResult Handle(ControllerResultContext context)
         {
             var error = context.Controller.ProblemDetailsFactory.CreateProblemDetails(
                 context.Controller.HttpContext,
