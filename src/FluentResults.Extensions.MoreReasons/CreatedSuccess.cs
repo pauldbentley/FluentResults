@@ -14,28 +14,20 @@
         {
         }
 
-        public string? Location
+        public string Location
         {
-            get => Metadata.TryGetValue(nameof(Location), out object? value)
-                ? (string?)value
-                : default;
-
+            get => this.GetMetadataOrDefault<string>(nameof(Location));
             private set => Metadata[nameof(Location)] = value;
         }
 
         public CreatedSuccess WithLocation(string location)
         {
-            Location = location ?? throw new ArgumentNullException(nameof(location));
+            Location = location;
             return this;
         }
 
         public CreatedSuccess WithLocation(Uri location)
         {
-            if (location == null)
-            {
-                throw new ArgumentNullException(nameof(location));
-            }
-
             return location.IsAbsoluteUri
                 ? WithLocation(location.AbsoluteUri)
                 : WithLocation(location.GetComponents(UriComponents.SerializationInfoString, UriFormat.UriEscaped));

@@ -11,12 +11,9 @@
         {
         }
 
-        public string? Key
+        public string Key
         {
-            get => Metadata.TryGetValue(nameof(Key), out object? value)
-                ? (string?)value
-                : default;
-
+            get => this.GetMetadataOrDefault<string>(nameof(Key));
             set => Metadata[nameof(Key)] = value;
         }
 

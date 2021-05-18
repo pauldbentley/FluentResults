@@ -2,49 +2,73 @@
 {
     public class ProblemError : Error
     {
-        public string? Detail
+        public ProblemError()
         {
-            get => Metadata.TryGetValue(nameof(Detail), out object? value)
-                ? (string?)value
-                : default;
-
-            private set => Metadata[nameof(Detail)] = value;
         }
 
-        public string? Instance
+        public ProblemError(string detail)
+            : base(detail)
         {
-            get => Metadata.TryGetValue(nameof(Instance), out object? value)
-                ? (string?)value
-                : default;
+        }
 
+        public string Detail
+        {
+            get => Message;
+            private set => Message = value;
+        }
+
+        public string Instance
+        {
+            get => this.GetMetadataOrDefault<string>(nameof(Instance));
             private set => Metadata[nameof(Instance)] = value;
         }
 
-        public int? StatusCode
+        public int StatusCode
         {
-            get => Metadata.TryGetValue(nameof(StatusCode), out object? value)
-                ? (int?)value
-                : default;
-
+            get => this.GetMetadataOrDefault<int>(nameof(StatusCode));
             private set => Metadata[nameof(StatusCode)] = value;
         }
 
-        public string? Title
+        public string Title
         {
-            get => Metadata.TryGetValue(nameof(Title), out object? value)
-                ? (string?)value
-                : default;
-
+            get => this.GetMetadataOrDefault<string>(nameof(Title));
             private set => Metadata[nameof(Title)] = value;
         }
 
-        public string? Type
+        public string Type
         {
-            get => Metadata.TryGetValue(nameof(Type), out object? value)
-                ? (string?)value
-                : default;
-
+            get => this.GetMetadataOrDefault<string>(nameof(Type));
             private set => Metadata[nameof(Type)] = value;
+        }
+
+        public ProblemError WithDetail(string detail)
+        {
+            Detail = detail;
+            return this;
+        }
+
+        public ProblemError WithInstance(string instance)
+        {
+            Instance = instance;
+            return this;
+        }
+
+        public ProblemError WithStatusCode(int statusCode)
+        {
+            StatusCode = statusCode;
+            return this;
+        }
+
+        public ProblemError WithTitle(string title)
+        {
+            Title = title;
+            return this;
+        }
+
+        public ProblemError WithType(string type)
+        {
+            Type = type;
+            return this;
         }
     }
 }
